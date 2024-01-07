@@ -6,6 +6,7 @@ import Portal from '../menu/Portal';
 import NavbarSide from './NavbarSide';
 export default function Navbar() {
     const { menu } = data;
+    const mobileMenuBreakPoint = 425;
     const [topNavWidth, setTopNavWidth] = useState(0)
     const [topNavBarData, setTopNavBarData] = useState(menu)
     const [sideNavBarData, setSideNavBarData] = useState(menu)
@@ -25,10 +26,17 @@ export default function Navbar() {
     const showHambergurMenu = menu.length > topNavBarData.length;
     console.log(topNavBarData.length)
     useLayoutEffect(() => {
-        const elemNumber = Math.floor(topNavWidth / (topNavElementProps.width + topNavElementProps.padding + topNavElementProps.offset));
-        setTopNavBarData(menu.slice(0, elemNumber));
-        setSideNavBarData(menu.slice(elemNumber))
-        console.log(elemNumber, '***elemNumber')
+
+        if (mobileMenuBreakPoint < topNavWidth) {
+            const elemNumber = Math.floor(topNavWidth / (topNavElementProps.width + topNavElementProps.padding + topNavElementProps.offset));
+            setTopNavBarData(menu.slice(0, elemNumber));
+            setSideNavBarData(menu.slice(elemNumber))
+        } else {
+            setTopNavBarData(menu.slice(0, 0));
+            setSideNavBarData(menu)
+        }
+
+        console.log(topNavWidth, '***elemNumber')
     }, [topNavWidth, menu]);
 
 
@@ -41,7 +49,6 @@ export default function Navbar() {
             } else {
                 console.log('***click outside');
                 const menuDetect = (event.target as HTMLElement)?.id
-
                 // this is done only to detect if the outside click is caused by the click on hamberger menu
                 if (menuDetect !== 'menuIcon') {
                     setShowSideNav(false);

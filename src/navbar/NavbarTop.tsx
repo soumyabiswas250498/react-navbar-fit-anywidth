@@ -10,7 +10,7 @@ export default function NavbarTop(props: any) {
     const oneElementWidth = `w-[${topNavElementProps.width}px]`;
     const oneElementPadding = `px-[${topNavElementProps.padding}px]`;
 
-    // console.log(oneElementPadding, '***element')
+    console.log(menu, '***element')
 
     useLayoutEffect(() => {
         function handleResize() {
@@ -28,7 +28,7 @@ export default function NavbarTop(props: any) {
     }, [selectedParentElement, menu]);
 
     return (
-        <div className='flex justify-between w-full gap-2 py-2 border border-green-500' ref={selectedParentElement}>
+        <div className={`flex ${menu.length === 0 ? 'justify-end' : 'justify-between'}  w-full gap-2 py-2 border border-green-500`} ref={selectedParentElement}>
             {
                 menu.map((item: any, index: number) =>
                     <div
