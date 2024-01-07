@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 import NavbarTop from './NavbarTop';
 import data from './data.json';
@@ -29,7 +29,36 @@ export default function Navbar() {
         setTopNavBarData(menu.slice(0, elemNumber));
         setSideNavBarData(menu.slice(elemNumber))
         console.log(elemNumber, '***elemNumber')
-    }, [topNavWidth, menu])
+    }, [topNavWidth, menu]);
+
+
+    const sideNavRef = useRef<HTMLDivElement>(null);
+    const ClickAwayListner = () => {
+        const handleClickOutside = (event: Event) => {
+            console.log(sideNavRef.current, '***')
+            if (sideNavRef.current && sideNavRef.current.contains(event.target as Node)) {
+                console.log('***click Inside');
+            } else {
+                console.log('***click outside');
+                const menuDetect = (event.target as HTMLElement)?.id
+
+                // this is done only to detect if the outside click is caused by the click on hamberger menu
+                if (menuDetect !== 'menuIcon') {
+                    setShowSideNav(false);
+                }
+            }
+        }
+        useEffect(() => {
+            document.addEventListener('click', handleClickOutside)
+            return () => {
+                document.removeEventListener('click', handleClickOutside);
+            };
+
+        }, [sideNavRef])
+    }
+    ClickAwayListner()
+
+
 
     return (
         <div className='w-full' ref={setRefEl}>
@@ -37,9 +66,11 @@ export default function Navbar() {
             {
                 showSideNav && <Portal>
                     <div ref={setPopEl} style={styles.popper} {...attributes.popper}>
-                        <NavbarSide data={sideNavBarData} />
-                    </div>
+                        <div ref={sideNavRef} className='border w-fit h-fit border-amber-400'>
+                            <NavbarSide data={sideNavBarData} />
+                        </div>
 
+                    </div>
                 </Portal>
             }
 

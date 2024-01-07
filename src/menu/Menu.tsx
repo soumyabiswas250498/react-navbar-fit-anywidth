@@ -34,12 +34,12 @@ const menuData = [
 
 export default function Menu(props: any) {
     const { data } = props;
-    console.log(data, '***menudata')
+    // console.log(data, '***menudata')
     const [showSubmenu, setShowSubmenu] = useState(false);
     let [refEl, setRefEl]: any = useState();
     let [popEl, setPopEl]: any = useState();
-    const { styles, attributes } = usePopper(refEl, popEl, { placement: 'bottom', modifiers: [{ name: 'offset', options: { offset: [-80, 0] } }] })
-    console.log(showSubmenu, '***menu1')
+    const { styles, attributes } = usePopper(refEl, popEl, { placement: 'bottom', modifiers: [{ name: 'offset', options: { offset: [-76, 0] } }] })
+    // console.log(showSubmenu, '***menu1')
     return (
         <div
             onMouseEnter={(e) => { e.stopPropagation(); setShowSubmenu(true) }}

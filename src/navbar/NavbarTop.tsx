@@ -40,8 +40,7 @@ export default function NavbarTop(props: any) {
             }
             {showHambergurMenu &&
                 <div className='w-6 h-full' onClick={() => { setShowSideNav((prev: Boolean) => !prev) }}>
-                    {showSideNav ? <img src={crossMenuIcon} alt='menu' /> : <img src={hambergerMenuIcon} alt='menu' />}
-
+                    {showSideNav ? <img src={crossMenuIcon} alt='menu' id='menuIcon' /> : <img src={hambergerMenuIcon} alt='menu' id='menuIcon' />}
                 </div>
             }
         </div>
