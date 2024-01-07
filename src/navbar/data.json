@@ -2,7 +2,12 @@
   "menu": [
     {
       "label": "M",
-      "link": "/menu1"
+      "link": "/menu1",
+      "subMenu": [
+        { "label": "submenu11", "path": "/submenu12" },
+        { "label": "submenu12", "path": "/submenu12" },
+        { "label": "submenu13", "path": "/submenu13" }
+      ]
     },
     {
       "label": "Menu2",
@@ -18,7 +23,12 @@
     },
     {
       "label": "Menu5",
-      "link": "/menu1"
+      "link": "/menu1",
+      "subMenu": [
+        { "label": "submenu11", "path": "/submenu12" },
+        { "label": "submenu12", "path": "/submenu12" },
+        { "label": "submenu13", "path": "/submenu13" }
+      ]
     },
     {
       "label": "Menu6",
@@ -58,7 +68,12 @@
     },
     {
       "label": "Menu15",
-      "link": "/menu1"
+      "link": "/menu1",
+      "subMenu": [
+        { "label": "submenu11", "path": "/submenu12" },
+        { "label": "submenu12", "path": "/submenu12" },
+        { "label": "submenu13", "path": "/submenu13" }
+      ]
     },
     {
       "label": "Menu16",
